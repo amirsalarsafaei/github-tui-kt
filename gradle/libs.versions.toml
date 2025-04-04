@@ -1,0 +1,30 @@
+[versions]
+kotlinVersion = "2.1.10"
+sqldelightVersion = "2.0.2"
+mordantVersion = "3.0.2"
+retrofitVersion = "2.11.0"
+okhttpVersion = "4.12.0"
+gsonVersion = "2.12.1"
+shadowVersion = "8.3.5"
+scrimageVersion = "4.3.0"
+
+[libraries]
+sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelightVersion" }
+sqldelight-driver-jvm = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelightVersion" }
+sqldelight-adapters = { module = "app.cash.sqldelight:primitive-adapters", version.ref = "sqldelightVersion" }
+datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.2"
+mordant = { module = "com.github.ajalt.mordant:mordant", version.ref = "mordantVersion" }
+mordant-coroutines = { module = "com.github.ajalt.mordant:mordant-coroutines", version.ref = "mordantVersion" }
+mordant-markdown = { module = "com.github.ajalt.mordant:mordant-markdown", version.ref = "mordantVersion" }
+scrimage = { module = "com.sksamuel.scrimage:scrimage-core", version.ref = "scrimageVersion" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+retrofit-converters-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVersion" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gsonVersion" }
+logging = "io.github.oshai:kotlin-logging-jvm:7.0.6"
+logback = "ch.qos.logback:logback-classic:1.5.18"
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttpVersion" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelightVersion" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadowVersion" }

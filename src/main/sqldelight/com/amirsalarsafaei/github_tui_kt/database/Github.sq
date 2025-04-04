@@ -1,0 +1,39 @@
+createUser:
+INSERT INTO github_users(username, name, avatar_url, followers, following, created_at, last_synced)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+syncUser:
+UPDATE github_users
+SET followers = ?, following = ?, last_synced = ?
+WHERE username = ?;
+
+upsertRepository:
+INSERT OR IGNORE INTO github_repositories(owner, name, stars, forks)
+VALUES (?, ?, ?, ?);
+
+searchUsers:
+SELECT *
+FROM github_users
+WHERE username LIKE '%' || :username || '%';
+
+searchRepository:
+SELECT *
+FROM  github_repositories
+WHERE owner || '/' || name LIKE '%' || :repository || '%' OR owner || name LIKE '%' || :repository || '%'
+UNION
+SELECT *
+FROM  github_repositories
+WHERE name LIKE '%' || :repository || '%'
+UNION
+SELECT *
+FROM  github_repositories
+WHERE owner LIKE '%' || :repository || '%';
+
+getUser:
+SELECT *
+FROM github_users
+WHERE username = ?;
+
+getUserRepositories:
+SELECT * FROM github_repositories
+WHERE owner = ?;

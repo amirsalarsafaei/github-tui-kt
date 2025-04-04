@@ -1,0 +1,25 @@
+import java.time.ZonedDateTime;
+import kotlin.Int;
+
+CREATE TABLE github_users(
+    username TEXT PRIMARY KEY,
+    name TEXT,
+    avatar_url TEXT NOT NULL,
+
+    following INTEGER AS Int NOT NULL,
+    followers INTEGER AS Int NOT NULL,
+
+    created_at TEXT AS ZonedDateTime NOT NULL,
+    last_synced TEXT AS ZonedDateTime NOT NULL
+);
+
+CREATE TABLE github_repositories(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    owner TEXT NOT NULL REFERENCES  github_users(username),
+    name TEXT NOT NULL,
+
+    stars INTEGER AS Int NOT NULL,
+    forks INTEGER AS Int NOT NULL,
+
+    CONSTRAINT github_repopath_uniq UNIQUE(owner, name)
+);
