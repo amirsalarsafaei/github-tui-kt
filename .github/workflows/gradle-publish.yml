@@ -8,9 +8,9 @@
 name: Gradle Package
 
 on:
-  release:
-    types: [ created ]
-
+  push:
+    tags:
+      - "v*.*.*"
 jobs:
   build:
 
@@ -34,9 +34,9 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
-
       - name: Upload Fatjar to GitHub Release
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             **/build/libs/*.jar
