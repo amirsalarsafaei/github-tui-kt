@@ -55,8 +55,7 @@ class Repository(
         fun getInstance(): Repository = repository
     }
 
-    suspend fun retrieveUserProfile(usernameIn: String): Pair<FullUser?, Flow<GithubRepository>?> {
-        val username = usernameIn.lowercase()
+    suspend fun retrieveUserProfile(username: String): Pair<FullUser?, Flow<GithubRepository>?> {
         try {
             val dbUser = databaseRetriever.retrieveFullUser(username)
             if (dbUser != null && !needsRefresh(dbUser.lastSynced)) {
