@@ -7,9 +7,6 @@
 
 name: Gradle Package
 
-permissions:
-  contents: write  # This grants permission to manage releases
-
 on:
   push:
     tags:
@@ -19,8 +16,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
